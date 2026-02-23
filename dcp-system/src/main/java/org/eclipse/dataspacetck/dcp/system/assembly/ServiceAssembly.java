@@ -273,7 +273,7 @@ public class ServiceAssembly {
                 .id(randomUUID().toString())
                 .issuanceDate(Instant.now().toString())
                 .issuer(issuerDid)
-                .type(List.of(credentialType))
+                .type(List.of("VerifiableCredential", credentialType))
                 // credential subject cannot be empty
                 .credentialSubject(Map.of("id", holderDid, "foo", "bar"))
                 .build();
