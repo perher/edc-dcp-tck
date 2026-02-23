@@ -141,7 +141,7 @@ public class CredentialRequestTest extends AbstractCredentialIssuanceTest {
     @DisplayName("6.4.7 IssuerService should reject a CredentialRequest with an invalid token - iat in future")
     void is_6_4_7_credentialRequest_iatInFuture() {
         var token = createToken(createClaims()
-                .issueTime(Date.from(now().plusSeconds(60)))
+                .issueTime(Date.from(now().plusSeconds(300)))
                 .build());
         var msg = createCredentialRequestMessage(holderPid).build();
         var request = createCredentialRequest(token, msg).build();
@@ -152,7 +152,7 @@ public class CredentialRequestTest extends AbstractCredentialIssuanceTest {
     @DisplayName("6.4.8 IssuerService should reject a CredentialRequest with an invalid token - nbf in future")
     void is_6_4_8_credentialRequest_nbfViolated() {
         var token = createToken(createClaims()
-                .notBeforeTime(Date.from(now().plusSeconds(60)))
+                .notBeforeTime(Date.from(now().plusSeconds(300)))
                 .build());
         var msg = createCredentialRequestMessage(holderPid).build();
         var request = createCredentialRequest(token, msg).build();

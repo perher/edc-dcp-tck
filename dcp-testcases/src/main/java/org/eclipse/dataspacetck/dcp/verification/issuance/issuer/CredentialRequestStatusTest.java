@@ -138,7 +138,7 @@ public class CredentialRequestStatusTest extends AbstractCredentialIssuanceTest 
     void is_6_8_7_credentialStatusRequest_iatInFuture() {
         var id = requestCredentials();
         var token = createToken(createClaims()
-                .issueTime(Date.from(now().plusSeconds(60)))
+                .issueTime(Date.from(now().plusSeconds(300)))
                 .build());
         var request = createStatusRequest(id, token).build();
         executeRequest(request, TestFixtures::assert4xxCode);
@@ -149,7 +149,7 @@ public class CredentialRequestStatusTest extends AbstractCredentialIssuanceTest 
     void is_6_8_8_credentialStatusRequest_nbfViolated() {
         var id = requestCredentials();
         var token = createToken(createClaims()
-                .notBeforeTime(Date.from(now().plusSeconds(60)))
+                .notBeforeTime(Date.from(now().plusSeconds(300)))
                 .build());
         var request = createStatusRequest(id, token).build();
         executeRequest(request, TestFixtures::assert4xxCode);
