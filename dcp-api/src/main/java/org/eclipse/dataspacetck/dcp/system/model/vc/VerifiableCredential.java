@@ -78,7 +78,7 @@ public class VerifiableCredential extends ExtensibleModel {
 
     public Map<String, Object> toMap() {
         var map = new LinkedHashMap<String, Object>();
-        map.put(CONTEXT, id);
+        map.put(CONTEXT, List.of(CredentialConstants.CONTEXT_V1));
         map.put(ID, id);
         map.put(TYPE, type);
         map.put("issuer", issuer);
