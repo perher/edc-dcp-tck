@@ -129,7 +129,8 @@ public class PresentationFlowSection5Test extends AbstractPresentationFlowTest {
     @MandatoryTest
     @DisplayName("5.4.1.2 Verify Resolution API rejects an empty (or absent) 'scope' array")
     @IssueCredentials(MEMBERSHIP_CREDENTIAL_TYPE)
-    public void cs_05_04_02_emptyScopeExpect4xx(@AuthToken(MEMBERSHIP_SCOPE) String authToken) {
+    public void cs_05_04_02_emptyScopeExpect4xx(@AuthToken(MEMBERSHIP_SCOPE) String authToken,
+                                                @AuthToken(MEMBERSHIP_SCOPE) String authToken2) {
         var message = DcpMessageBuilder.newInstance()
                               .type(PRESENTATION_QUERY_MESSAGE)
                               .property(SCOPE, List.of())
@@ -141,7 +142,7 @@ public class PresentationFlowSection5Test extends AbstractPresentationFlowTest {
                               .type(PRESENTATION_QUERY_MESSAGE)
                               .build();
 
-        executeRequest(createPresentationRequest(authToken, message2), response -> assertThat(response.code()).isEqualTo(400));
+        executeRequest(createPresentationRequest(authToken2, message2), response -> assertThat(response.code()).isEqualTo(400));
     }
 
     @Disabled
